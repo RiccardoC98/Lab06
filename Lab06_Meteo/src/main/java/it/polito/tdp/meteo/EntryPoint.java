@@ -2,10 +2,13 @@ package it.polito.tdp.meteo;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import it.polito.tdp.meteo.FXMLController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import it.polito.tdp.meteo.model.*;
 
 
 public class EntryPoint extends Application {
@@ -13,18 +16,17 @@ public class EntryPoint extends Application {
     @Override
     public void start(Stage stage) throws Exception {
      
+        FXMLController controller;
         
-    	FXMLController controller;
-    	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-
-        controller = loader.getController();
-    	
-        // TODO impostare il model nel controller        
         
-        stage.setTitle("JavaFX and Maven");
+        controller = loader.getController();
+        Model model = new it.polito.tdp.meteo.model.Model();
+        controller.setModel(model);
+        
+        stage.setTitle("ilmeteo.it");
         stage.setScene(scene);
         stage.show();
         
